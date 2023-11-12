@@ -43,6 +43,10 @@ public class GameController implements Initializable {
     @FXML
     private Label numberSticks;
     @FXML
+    private Label levelLabel;
+    @FXML
+    private Label playerNameLabel;
+    @FXML
     private Button currentGame;
 
     @FXML
@@ -86,9 +90,13 @@ public class GameController implements Initializable {
     int id=1;
     int currentID=-1;
     int numberOfHandling=1;
+    String level;
+    String whoStarts;
+    String playerName;
     @FXML
     private Label currentSelected;
-
+    @FXML
+    private Label   whoStartLabel;
 //    private Label sticksLabel=new Label();
 
     public void number(int numberStick){
@@ -98,12 +106,25 @@ this.sticks=numberStick;
 
 
     }
+    public void setLevel(String getLevel){
+        level=getLevel;
+    }
+    public void whoStart(String start){
+        whoStarts=start;
+    }
+    public  void getPlayerName(String name){
+        playerName=name;
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         setSticks();
         numberSticks.setText("Number of sticks: "+sticks);
+        levelLabel.setText("Level:"+level);
+        whoStartLabel.setText("Who Start : "+whoStarts);
+        playerNameLabel.setText("Player Name : "+playerName);
 
         currentGameArrow.setVisible(true);
         currentGame.setStyle("-fx-background-color: white;");

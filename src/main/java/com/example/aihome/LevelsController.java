@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LevelsController {
+public class LevelsController implements Initializable{
     @FXML
     private VBox Levels;
     @FXML
@@ -31,7 +32,8 @@ public class LevelsController {
     private Button Medium;
     @FXML
     private TextField sticks;
-
+    @FXML
+    private TextField playerName;
     @FXML
     private Stage stage;
     private Scene scene;
@@ -39,6 +41,12 @@ public class LevelsController {
 
     private Parent root;
     int value=0;
+    String level;
+    @FXML
+    private ChoiceBox<String> choicebox;
+
+
+    private String[] e={"PC","Player"};
 
     @FXML
     protected void onButtonsClickOpenGame(ActionEvent e) throws IOException {
@@ -47,6 +55,9 @@ public class LevelsController {
         // Create an instance of the controller and set the value
         GameController gameController = new GameController();
         gameController.number(value);
+        gameController.setLevel(level);
+        gameController.getPlayerName(playerName.getText());
+        gameController.whoStart(choicebox.getSelectionModel().getSelectedItem().toString());
 
         // Set the controller for the loader
         loader.setController(gameController);
@@ -60,7 +71,11 @@ public class LevelsController {
         stage.show();
     }
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        choicebox.getItems().addAll(e);
+
+    }
 
 
     @FXML
@@ -71,9 +86,7 @@ public class LevelsController {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    protected void easyMode(ActionEvent e) throws IOException {
-
+    protected boolean checkValue(){
         sticks.setStyle("-fx-border-color: white ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
 
         try{
@@ -87,7 +100,22 @@ public class LevelsController {
             value=-1;
         }
         if(value!=-1){
+          return true;
+        }
+        else {
+            sticks.setStyle("-fx-border-color:red ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
+return false;
+        }
+
+    }
+
+    @FXML
+    protected void easyMode(ActionEvent e) throws IOException {
+
+        if(checkValue()){
+            level="easy";
             onButtonsClickOpenGame(e);
+
         }
         else {
             sticks.setStyle("-fx-border-color:red ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
@@ -96,5 +124,30 @@ public class LevelsController {
 
 
     }
+    @FXML
+    protected void mediumMode(ActionEvent e) throws IOException{
+        if(checkValue()){
+            level="medium";
+            onButtonsClickOpenGame(e);
+
+        }
+        else {
+            sticks.setStyle("-fx-border-color:red ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
+
+        }
+    }
+    @FXML
+    protected void hardMode(ActionEvent e) throws IOException{
+        if(checkValue()){
+            level="hard";
+            onButtonsClickOpenGame(e);
+
+        }
+        else {
+            sticks.setStyle("-fx-border-color:red ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
+
+        }
+    }
+
 
 }

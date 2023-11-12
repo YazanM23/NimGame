@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,8 +20,8 @@
       <VBox fx:id="Levels" alignment="CENTER" layoutX="446.0" layoutY="164.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
          <children>
             <Button fx:id="Easy" mnemonicParsing="false" onAction="#easyMode" prefHeight="26.0" prefWidth="70.0" text="Easy" />
-            <Button fx:id="Medium" mnemonicParsing="false" prefWidth="70.0" text="Medium" />
-            <Button fx:id="Hard" mnemonicParsing="false" prefWidth="70.0" text="Hard">
+            <Button fx:id="Medium" mnemonicParsing="false" onAction="#mediumMode" prefWidth="70.0" text="Medium" />
+            <Button fx:id="Hard" mnemonicParsing="false" onAction="#hardMode" prefWidth="70.0" text="Hard">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -32,5 +34,8 @@
          <image>
             <Image url="@../../../Images/SCR-20231108-qmcz-removebg-preview.png" />
          </image></ImageView>
+      <Label layoutX="345.0" layoutY="439.0" text="Who Start" textFill="WHITE" />
+      <ChoiceBox fx:id="choicebox" layoutX="428.0" layoutY="432.0" prefWidth="150.0" />
+      <TextField fx:id="playerName" layoutX="451.0" layoutY="476.0" prefHeight="28.0" prefWidth="112.0" promptText="Enter your Name" style="-fx-background-color: transperant; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
    </children>
 </AnchorPane>

@@ -75,6 +75,9 @@
                </children>
             </AnchorPane>
             <Label fx:id="currentSelected" layoutX="14.0" layoutY="499.0" text="Current Selected : " />
+            <Label fx:id="levelLabel" layoutX="18.0" layoutY="485.0" text="Level :" />
+            <Label fx:id="whoStartLabel" layoutX="21.0" layoutY="537.0" text="Who Start :" />
+            <Label fx:id="playerNameLabel" layoutX="13.0" layoutY="466.0" text="Player Name:" />
          </children>
       </AnchorPane>
    </left>
