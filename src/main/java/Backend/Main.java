@@ -11,7 +11,7 @@ public class Main {
                 String Name= scanner.nextLine();
 //            System.out.print("\n");
 
-        while (true) {
+
             System.out.print("Enter Number of Matches: ");
             int NumberOfMatches = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
@@ -36,7 +36,7 @@ public class Main {
 
                 Tree.alphaBeta(head, Integer.MIN_VALUE, Integer.MAX_VALUE, whoStartInt);
 
-//                Tree.printTree(head, 0);
+                Tree.printTree(head, 0);
 
                 System.out.println("Dear "+Name+", YOU ARE WELCOME!");
                 System.out.println("Be ready to play");
@@ -51,6 +51,6 @@ public class Main {
                 else if (state == 1) System.out.println("Oops! \nGame Over!\nTry again, You Can Do It ^_^");// 1 -> pc win
                 else                 System.out.println("Sth wont wrong, Play again please");
             }
-        }
+
     }
 }

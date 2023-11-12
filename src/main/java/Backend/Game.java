@@ -13,8 +13,7 @@ public class Game {
         int index=machineTurn(head,1);
 
         return index;
-        //currentSelectedValue
-        //createsticks (number,
+
     }
     public static int playMedium(Node head, int whoPlay) {
         if (head.isLeaf) return head.MaxMin;
@@ -134,9 +133,9 @@ public class Game {
     public static int playerTurn (Node head){
         System.out.println("Your turn");
         List <Integer> templist= GameController.getPlayerMovements(head);
-for(int i=0;i<templist.size();i++){
-    System.out.println(templist.get(i));
-}
+        for(int i=0;i<templist.size();i++){
+            System.out.println(templist.get(i));
+        }
         int index=-1;
         for (int i = 0; i < head.childrens.size(); i++) {
             Node child = head.childrens.get(i);
@@ -192,5 +191,13 @@ for(int i=0;i<templist.size();i++){
 
             return sum;
         }
+    }
+
+    public static List<Integer> getPcValues(Node head){
+        List<Integer> tempList=new ArrayList<>();
+        tempList.add(head.divided);
+        tempList.add(head.firstValue);
+        tempList.add(head.secondValue);
+        return  tempList;
     }
 }

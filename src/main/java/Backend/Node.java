@@ -21,6 +21,7 @@ public class Node {
         this.tieBreaker =0;
         this.divided=0;
         this.firstValue=0;
+        this.secondValue=0;
 
     }
     public Node(List<Integer> matchesNumber) {
@@ -31,6 +32,7 @@ public class Node {
         this.tieBreaker =0;
         this.divided=0;
         this.secondValue=0;
+        this.firstValue=0;
 
     }
 //    public Node(List<Integer> matchesNumber, List<Node> childrens) {
