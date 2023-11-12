@@ -10,32 +10,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="573.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.aihome.LevelsController">
+<AnchorPane prefHeight="551.0" prefWidth="418.0" style="-fx-background-color: #e2e2e2; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.aihome.LevelsController">
    <children>
-      <ImageView fitHeight="573.0" fitWidth="1020.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="188.0" fitWidth="168.0" layoutX="126.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Images/apps.54764.9007199266387342.3183a9e3-fd2f-4afc-88d4-387cce2e5a75.2301d39f-737a-49d6-ae56-23408d006da7.jpeg" />
+            <Image url="@../../../SCR-20231113-bhso-removebg-preview.png" />
          </image>
       </ImageView>
-      <VBox fx:id="Levels" alignment="CENTER" layoutX="446.0" layoutY="164.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+      <VBox fx:id="Levels" alignment="CENTER" layoutX="152.0" layoutY="213.0" prefHeight="283.0" prefWidth="113.0" spacing="25.0">
          <children>
-            <Button fx:id="Easy" mnemonicParsing="false" onAction="#easyMode" prefHeight="26.0" prefWidth="70.0" text="Easy" />
-            <Button fx:id="Medium" mnemonicParsing="false" onAction="#mediumMode" prefWidth="70.0" text="Medium" />
-            <Button fx:id="Hard" mnemonicParsing="false" onAction="#hardMode" prefWidth="70.0" text="Hard">
+            <Button fx:id="Easy" mnemonicParsing="false" onAction="#easyMode" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 10px;" text="Easy" />
+            <Button fx:id="Medium" mnemonicParsing="false" onAction="#mediumMode" prefWidth="70.0" style="-fx-background-radius: 10px;" text="Medium" />
+            <Button fx:id="Hard" mnemonicParsing="false" onAction="#hardMode" prefWidth="70.0" style="-fx-background-radius: 10px;" text="Hard">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <TextField fx:id="sticks" prefHeight="28.0" prefWidth="105.0" promptText="Number of sticks" style="-fx-background-color: transperant; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="sticks" prefHeight="28.0" prefWidth="105.0" promptText="Number of sticks" style="-fx-background-color: transperant; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" />
+            <ChoiceBox fx:id="choicebox" prefWidth="150.0" style="-fx-background-radius: 10px;" />
             <Button mnemonicParsing="false" onAction="#GoBack" text="Back" />
          </children>
       </VBox>
-      <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="408.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Images/SCR-20231108-qmcz-removebg-preview.png" />
-         </image></ImageView>
-      <Label layoutX="345.0" layoutY="439.0" text="Who Start" textFill="WHITE" />
-      <ChoiceBox fx:id="choicebox" layoutX="428.0" layoutY="432.0" prefWidth="150.0" />
-      <TextField fx:id="playerName" layoutX="451.0" layoutY="476.0" prefHeight="28.0" prefWidth="112.0" promptText="Enter your Name" style="-fx-background-color: transperant; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+      <Label layoutX="69.0" layoutY="424.0" text="Who Start : " textFill="#0a0000" />
+      <TextField fx:id="playerName" layoutX="152.0" layoutY="169.0" prefHeight="28.0" prefWidth="112.0" promptText="Enter your Name" style="-fx-background-color: transperant; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px;" />
    </children>
 </AnchorPane>

@@ -6,20 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.aihome.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="418.0" style="-fx-background-color: #e2e2e2;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.aihome.HelloController">
    <children>
-      <ImageView fitHeight="644.0" fitWidth="1020.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="loading" fitHeight="118.0" fitWidth="121.0" layoutX="146.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../../Images/apps.54764.9007199266387342.3183a9e3-fd2f-4afc-88d4-387cce2e5a75.2301d39f-737a-49d6-ae56-23408d006da7.jpeg" />
-         </image></ImageView>
-      <ImageView fx:id="loading" fitHeight="150.0" fitWidth="200.0" layoutX="435.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../../../Images/giphy.gif" />
+            <Image url="@../../../output-onlinegiftools.gif" />
          </image>
       </ImageView>
-      <Button fx:id="Play" layoutX="484.0" layoutY="259.0" mnemonicParsing="false" onAction="#onPlayButtonClick" style="-fx-background-color: blue;" text="Play" textFill="WHITE">
+      <Button fx:id="Play" layoutX="173.0" layoutY="335.0" mnemonicParsing="false" onAction="#onPlayButtonClick" style="-fx-background-radius: 15px;" text="Play">
          <font>
-            <Font size="23.0" />
+            <Font size="20.0" />
          </font></Button>
+      <ImageView fitHeight="346.0" fitWidth="317.0" layoutX="55.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../SCR-20231113-bhso-removebg-preview.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

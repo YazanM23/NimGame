@@ -31,9 +31,9 @@ public class HelloController {
     private Parent root;
     @FXML
     protected void onPlayButtonClick(ActionEvent e) {
-Play.setVisible(false);
+
 loading.setVisible(true);
-        PauseTransition delay = new PauseTransition(Duration.seconds(0));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished(event -> {
 
              root = null;
@@ -47,6 +47,7 @@ loading.setVisible(true);
             stage.setScene(scene);
             stage.show();
            loading.setVisible(false);
+            Play.setVisible(false);
         });
 
         delay.play();

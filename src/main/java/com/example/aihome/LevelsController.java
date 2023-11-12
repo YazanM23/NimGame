@@ -87,7 +87,7 @@ public class LevelsController implements Initializable{
         stage.show();
     }
     protected boolean checkValue(){
-        sticks.setStyle("-fx-border-color: white ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
+        sticks.setStyle("-fx-border-color: black ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
 
         try{
             value= Integer.parseInt(sticks.getText());
