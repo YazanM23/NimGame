@@ -1,5 +1,7 @@
 package Backend;
 
+import com.example.aihome.GameController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,23 +10,11 @@ import static Backend.Tree.printOneLevel;
 
 public class Game {
     public static int playHard(Node head, int whoPlay) {
-        if (head.isLeaf) return head.MaxMin;
+        int index=machineTurn(head,1);
 
-        printOneLevel(head,0,0);
-
-        if (whoPlay==-1)
-        {
-            int index=playerTurn(head);
-            if (index == -1) System.out.println("No matching child found. Handle this case accordingly.");
-            else head.MaxMin = playEasy(head.childrens.get(index), -whoPlay);
-        }
-        else if (whoPlay==1)
-        {
-            int index=machineTurn(head,1);
-            head.MaxMin= playHard(head.childrens.get(index),-whoPlay);
-        }
-
-        return head.MaxMin;
+        return index;
+        //currentSelectedValue
+        //createsticks (number,
     }
     public static int playMedium(Node head, int whoPlay) {
         if (head.isLeaf) return head.MaxMin;
@@ -143,7 +133,10 @@ public class Game {
     }
     public static int playerTurn (Node head){
         System.out.println("Your turn");
-        List <Integer> templist= getPlayerMovements(head);
+        List <Integer> templist= GameController.getPlayerMovements(head);
+for(int i=0;i<templist.size();i++){
+    System.out.println(templist.get(i));
+}
         int index=-1;
         for (int i = 0; i < head.childrens.size(); i++) {
             Node child = head.childrens.get(i);
@@ -152,6 +145,7 @@ public class Game {
                 break;
             }
         }
+
         return index;
     }
     public static List<Integer> getPlayerMovements(Node head){

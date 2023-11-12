@@ -9,6 +9,9 @@ public class Node {
     public int MaxMin;
     public boolean isLeaf;
     public float tieBreaker;
+    public int divided;
+    public int firstValue;
+    public int secondValue;
 
     public Node() {
         this.matchesGroups =new ArrayList<>();
@@ -16,6 +19,9 @@ public class Node {
         this.isLeaf=false;
         this.MaxMin=0;
         this.tieBreaker =0;
+        this.divided=0;
+        this.firstValue=0;
+
     }
     public Node(List<Integer> matchesNumber) {
         this.matchesGroups = matchesNumber;
@@ -23,6 +29,8 @@ public class Node {
         this.isLeaf=false;
         this.MaxMin=0;
         this.tieBreaker =0;
+        this.divided=0;
+        this.secondValue=0;
 
     }
 //    public Node(List<Integer> matchesNumber, List<Node> childrens) {

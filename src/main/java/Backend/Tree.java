@@ -26,9 +26,13 @@ public class Tree {
 
                 for (int j = 1; j <= condition / 2; j++) {
                     List<Integer> tempList = new ArrayList<>(matchesGroups);
+                    node.divided=tempList.get(i);
                     tempList.remove(i);
                     tempList.add(valueOfGroup - j);
+                    node.firstValue=valueOfGroup-j;
                     tempList.add(j);
+                    node.secondValue=j;
+
                     Node tempNode = new Node(tempList);
                     newChildren.add(tempNode);
                 }

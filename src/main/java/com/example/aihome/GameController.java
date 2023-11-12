@@ -1,5 +1,6 @@
 package com.example.aihome;
-
+import Backend.Game;
+import Backend.Tree;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -45,10 +46,17 @@ public class GameController implements Initializable {
     @FXML
     private Label levelLabel;
     @FXML
+    private Label group1Label;
+    @FXML
+    private Label group2Label;
+    @FXML
+    private Label stateLabel;
+    @FXML
     private Label playerNameLabel;
     @FXML
     private Button currentGame;
-
+    @FXML
+    private Button moveButton;
     @FXML
     private AnchorPane anc;
 
@@ -59,7 +67,7 @@ public class GameController implements Initializable {
     @FXML
     private Button levels;
     @FXML
-    private VBox vbox;
+    private static VBox vbox=new VBox();
 
 
     @FXML
@@ -80,25 +88,38 @@ public class GameController implements Initializable {
     private TextField group2;
 
     @FXML
-    private AnchorPane groupsAnchor;
+    private static AnchorPane groupsAnchor=new AnchorPane();
 
-
-    List<HBox> hBoxList = new ArrayList<>();
-    List<Boxes> globalHboxList = new ArrayList<>();
-    List<Boxes> boxes = new ArrayList<>();
+    @FXML
+    private  AnchorPane mainAnc;
+    @FXML
+    private  AnchorPane currentSelectedAnc;
+    static List<HBox> hBoxList = new ArrayList<>();
+    static List<Boxes> globalHboxList = new ArrayList<>();
+    static List<Boxes> boxes = new ArrayList<>();
     int sticks;
-    int id=1;
-    int currentID=-1;
-    int numberOfHandling=1;
+    static int id=1;
+    static int currentID=-1;
+    static int numberOfHandling=0;
     String level;
-    String whoStarts;
+    static String whoStarts;
     String playerName;
     @FXML
-    private Label currentSelected;
+    private static Label currentSelected=new Label();
+public static int getState(){
+    return numberOfHandling;
+}
+public static boolean toggleFlag=false;
+public static boolean changeFlag(){
+    return toggleFlag;
+}
+
+
     @FXML
     private Label   whoStartLabel;
 //    private Label sticksLabel=new Label();
-
+static int number=0;
+    static int number2=0;
     public void number(int numberStick){
 
 
@@ -115,25 +136,110 @@ this.sticks=numberStick;
     public  void getPlayerName(String name){
         playerName=name;
     }
+int state=-2;
+    int whoStartInt=0;
+public  void play(Backend.Node head){
+
+    if (level.equals("hard")) {
+        state = Backend.Game.playHard(head, whoStartInt);
+    } else if (level.equals("medium")) {
+        state = Backend.Game.playMedium(head, whoStartInt);
+    } else if (level.equals("easy")) {
+        state = Game.playEasy(head, whoStartInt);
+    }
+    if (state == 1){
+        stateLabel.setText("State : You Lose");
+
+    }
+    else {
+        stateLabel.setText("State : You Won");
+    }
+
+
+
+
+
+}
+    Backend.Node head = new Backend.Node();
+    public static List<Integer> getPlayerMovements(Backend.Node head){
+
+        System.out.println("Enter Group value: ");
+        int groupValue= currentSelectedValue;
+System.out.println("current Value : "+groupValue);
+        System.out.println("Enter first value: ");
+        int firstValue= number;
+        System.out.println("first : "+firstValue);
+
+        System.out.println("Enter second value: ");
+        int secondValue= number2;
+        System.out.println("second Value : "+secondValue);
+        List <Integer> tempList=new ArrayList<>(head.matchesGroups);
+        tempList.remove((Integer) groupValue);
+
+        tempList.add(firstValue);
+        tempList.add(secondValue);
+
+        return tempList;
+    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    vbox.setAlignment(Pos.TOP_RIGHT);
+
+        anc.getChildren().add(vbox);
+        groupsAnchor.getChildren().add(group1Label);
+        groupsAnchor.getChildren().add(group1);
+        groupsAnchor.getChildren().add(group2Label);
+        groupsAnchor.getChildren().add(group2);
+        groupsAnchor.getChildren().add(moveButton);
+        groupsAnchor.setVisible(false);
+
+        int whoStartInt = (whoStarts.equals("Player")) ? -1 : 1;
+        head.matchesGroups.add(sticks);
+        Tree.generateTree(head);
+
+        Tree.alphaBeta(head, Integer.MIN_VALUE, Integer.MAX_VALUE, whoStartInt);
+
+
+
+        mainAnc.getChildren().add(groupsAnchor);
+        currentSelectedAnc.getChildren().add(currentSelected);
+
 
         setSticks();
+
         numberSticks.setText("Number of sticks: "+sticks);
         levelLabel.setText("Level:"+level);
         whoStartLabel.setText("Who Start : "+whoStarts);
+        if(whoStarts.equals("PC")){
+            numberOfHandling=1;
+        }
+        else{
+            numberOfHandling=2;
+        }
         playerNameLabel.setText("Player Name : "+playerName);
-
         currentGameArrow.setVisible(true);
         currentGame.setStyle("-fx-background-color: white;");
+
+     //   play();
     }
-boolean divided=false;
+static boolean divided=false;
+
+
+
+
+
     @FXML
     protected void dividedSticks(ActionEvent e){
-        int number=0;
-        int number2=0;
+
+
+
+
+
+
+        number=0;
+        number2=0;
         boolean flag;
 
         try {
@@ -159,43 +265,17 @@ else {
     group2.setStyle("-fx-border-color: white ;-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparent;");
     for(int i=0;i<boxes.size();i++){
         if(boxes.get(i).hbox.getId().equals(Integer.toString(currentID)) && !boxes.get(i).isPrinted){
+            toggleFlag=true;
             createSticksGroup1(number,number2);
+             play(head);
+
             divided=true;
         }
     }
 
 }
-
-
-
-//        for(int j=0;j<number;j++){
-//            Image image = new Image("stick.png");
-//            ImageView imageView = new ImageView(image);
-//            imageView.setFitWidth(50);
-//            imageView.setFitHeight(100);
-//
-//            boxes.get(currentID).hbox.getChildren().add(imageView);
-//            System.out.println("iam in divide");
-//
-//        } boxes.get(currentID).hbox.setStyle("-fx-background-color: #ececec;");
-//
-//
-//System.out.println("first id: "+currentID);
-//createSticksGroup2(number2);
-//        for(int j=0;j<number2;j++){
-//            Image image = new Image("stick.png");
-//            ImageView imageView = new ImageView(image);
-//            imageView.setFitWidth(50);
-//            imageView.setFitHeight(100);
-//
-//            boxes.get(currentID).hbox.getChildren().add(imageView);
-//            System.out.println("iam in divide2");
-//
-//        } boxes.get(currentID).hbox.setStyle("-fx-background-color: #ececec;");
-//
-//        System.out.println("Second id: "+currentID);
     }
-    HBox globalHbox=new HBox();
+    static HBox globalHbox=new HBox();
     @FXML
     protected void GoBack(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Levels.fxml"));
@@ -204,7 +284,7 @@ else {
         stage.setScene(scene);
         stage.show();
     }
-boolean flagVbox=false;
+static boolean flagVbox=false;
     boolean setSbefore=false;
 
 
@@ -283,13 +363,20 @@ boolean flagVbox=false;
         }
 
     }
-    int globalID=0;
-int currentSelectedValue=-1;
-int currentGlobalId=-1;
-int counter=0;
-int numberOfBoxes=0;
+    static int globalID=0;
+static int currentSelectedValue=-1;
+static int currentGlobalId=-1;
+static int counter=0;
+static int numberOfBoxes=0;
 boolean setCounter=true;
-    public void createSticksGroup1(int number,int number2){
+public static void setNumbers(int firstNumber,int secondNumber){
+    number=firstNumber;
+    number2=secondNumber;
+}
+public static void changeCurrentSelected(int number){
+    currentSelectedValue=number;
+}
+    public static void createSticksGroup1(int number,int number2){
 
 
 
@@ -515,16 +602,19 @@ boolean setCounter=true;
                 }
             }
         }
+
         if(numberOfHandling==1){
-            Label label=new Label("You");
+            Label label=new Label("PC");
             globalHbox.getChildren().add(label);
             numberOfHandling=2;
+            whoStarts="Me";
 
         }
         else{
             numberOfHandling=1;
             Label label=new Label("Me");
             globalHbox.getChildren().add(label);
+            whoStarts="PC";
 
         }
 
@@ -536,44 +626,6 @@ if(flagVbox) {
     vbox.getChildren().add(globalHbox);
 }
     }
-
-
-
-//    public void createSticksGroup2(int number){
-//        Boxes box=new Boxes();
-//        HBox newHbox=new HBox();
-//        newHbox.setId(Integer.toString(id));
-//        id++;
-//
-//        for(int j=0;j<number;j++){
-//            Image image = new Image("stick.png");
-//            ImageView imageView = new ImageView(image);
-//            imageView.setFitWidth(50);
-//            imageView.setFitHeight(100);
-//            newHbox.getChildren().add(imageView);
-//            System.out.println("iam in divide");
-//        }
-//        newHbox.setStyle("-fx-background-color: #ececec;");
-//
-//        newHbox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                groupsAnchor.setVisible(true);
-//                currentID=Integer.parseInt(newHbox.getId());
-//                groupsAnchor.setVisible(true);
-//            }
-//        });
-//
-//        box.hbox=newHbox;
-//        box.id=id;
-//        box.value=number;
-//        hBoxList.add(newHbox);
-//        boxes.add(box);
-
-//        // Add newHbox to vbox only once
-//
-//    }
-
 
     @FXML
     protected void CurrentButton(){

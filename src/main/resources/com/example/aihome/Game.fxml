@@ -65,19 +65,24 @@
                </children>
             </VBox>
             <Label fx:id="numberSticks" layoutX="15.0" layoutY="520.0" text="Number of sticks:" />
-            <AnchorPane fx:id="groupsAnchor" layoutY="319.0" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: transperant;" visible="false">
+            <AnchorPane fx:id="mainAnc" layoutY="319.0">
                <children>
-                  <Label layoutX="20.0" layoutY="42.0" text="Group 1" />
-                  <Label layoutX="20.0" layoutY="81.0" text="Group 2" />
-                  <TextField fx:id="group1" layoutX="79.0" layoutY="27.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: transperant; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" />
-                  <TextField fx:id="group2" layoutX="80.0" layoutY="69.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: transperant; -fx-border-width: 0px 0px 2px 0px0px; -fx-border-color: white;" />
-                  <Button layoutX="2.0" layoutY="113.0" mnemonicParsing="false" onAction="#dividedSticks" prefHeight="26.0" prefWidth="198.0" style="-fx-background-color: transperant;" text="Move" />
+                  <AnchorPane fx:id="groupsAnchor" prefHeight="175.0" prefWidth="200.0" style="-fx-background-color: transperant;" visible="false">
+                     <children>
+                        <Label fx:id="group1Label" layoutX="20.0" layoutY="42.0" text="Group 1" />
+                        <Label fx:id="group2Label" layoutX="20.0" layoutY="81.0" text="Group 2" />
+                        <TextField fx:id="group1" layoutX="79.0" layoutY="27.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: transperant; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" />
+                        <TextField fx:id="group2" layoutX="80.0" layoutY="69.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: transperant; -fx-border-width: 0px 0px 2px 0px0px; -fx-border-color: white;" />
+                        <Button fx:id="moveButton" layoutX="2.0" layoutY="113.0" mnemonicParsing="false" onAction="#dividedSticks" prefHeight="26.0" prefWidth="198.0" style="-fx-background-color: transperant;" text="Move" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
-            <Label fx:id="currentSelected" layoutX="14.0" layoutY="499.0" text="Current Selected : " />
+            <AnchorPane fx:id="currentSelectedAnc" layoutX="14.0" layoutY="499.0" />
             <Label fx:id="levelLabel" layoutX="18.0" layoutY="485.0" text="Level :" />
             <Label fx:id="whoStartLabel" layoutX="21.0" layoutY="537.0" text="Who Start :" />
             <Label fx:id="playerNameLabel" layoutX="13.0" layoutY="466.0" text="Player Name:" />
+            <Label fx:id="stateLabel" layoutX="21.0" layoutY="449.0" text="State" />
          </children>
       </AnchorPane>
    </left>
