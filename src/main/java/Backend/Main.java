@@ -24,7 +24,6 @@ public class Main {
             System.out.print("Who start? (M:me, P:pc):");
             String WhoStart = scanner.nextLine();
 //            System.out.print("\n");
-
             if (NumberOfMatches < 3) System.out.println("Invalid Number of matches!");
             else {
                 int state = -1;

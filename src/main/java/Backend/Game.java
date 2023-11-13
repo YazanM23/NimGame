@@ -23,12 +23,16 @@ public class Game {
         if (whoPlay==-1)
         {
             int index=playerTurn(head);
+
             if (index == -1) System.out.println("No matching child found. Handle this case accordingly.");
-            else head.MaxMin = playEasy(head.childrens.get(index), -whoPlay);
+            else head.MaxMin = playMedium(head.childrens.get(index), -whoPlay);
         }
         else if (whoPlay==1)//pc turn
         {
             int index= machineTurn(head,2);
+            List<Integer> temp=getPcValues(head,head.childrens.get(index));
+            for (Integer integer : temp) System.out.println(integer);
+
             head.MaxMin = playMedium(head.childrens.get(index),-whoPlay);
         }
         return head.MaxMin;
@@ -132,10 +136,10 @@ public class Game {
     }
     public static int playerTurn (Node head){
         System.out.println("Your turn");
-        List <Integer> templist= GameController.getPlayerMovements(head);
-        for(int i=0;i<templist.size();i++){
-            System.out.println(templist.get(i));
-        }
+        List <Integer> templist=getPlayerMovements(head);
+//        for(int i=0;i<templist.size();i++){
+//            System.out.println(templist.get(i));
+//        }
         int index=-1;
         for (int i = 0; i < head.childrens.size(); i++) {
             Node child = head.childrens.get(i);
@@ -193,11 +197,64 @@ public class Game {
         }
     }
 
-    public static List<Integer> getPcValues(Node head){
-        List<Integer> tempList=new ArrayList<>();
-        tempList.add(head.divided);
-        tempList.add(head.firstValue);
-        tempList.add(head.secondValue);
-        return  tempList;
+    public static List<Integer> getPcValues(Node head, Node child) {
+        List<Integer> tempList = new ArrayList<>();
+
+        List<Integer> headGroups = new ArrayList<>(head.matchesGroups);
+        List<Integer> childGroups = new ArrayList<>(child.matchesGroups);
+
+        for (Integer value : head.matchesGroups) {
+            childGroups.remove(value);
+        }
+
+        for (Integer value : child.matchesGroups) {
+            headGroups.remove(value);
+        }
+
+        if (!headGroups.isEmpty()) {
+            tempList.add(headGroups.get(0));
+        }
+
+        if (!childGroups.isEmpty()) {
+            tempList.add(childGroups.get(0));
+        }
+
+        if (childGroups.size() > 1) {
+            tempList.add(childGroups.get(1));
+        }
+
+        return tempList;
     }
+
+    public static List<Integer> agetPcValues(Node head, Node child) {
+        List<Integer> tempList = new ArrayList<>();
+
+        List<Integer> headGroups = new ArrayList<>(head.matchesGroups);
+        List<Integer> childGroups = new ArrayList<>(child.matchesGroups);
+        headGroups.removeAll(childGroups);
+        childGroups.removeAll(head.matchesGroups);
+        tempList.add(headGroups.get(0));
+                    tempList.add(childGroups.get(0));
+                    tempList.add(childGroups.get(1));
+
+//        int flag = 1;
+//        for (int i = 0; i < childGroups.size(); i++){
+//            for (int j = 0; j < childGroups.size(); j++)
+//                if (childGroups.get(i) + childGroups.get(j) == headGroups.get(0)) {
+//                    tempList.add(headGroups.get(0));
+//                    tempList.add(childGroups.get(i));
+//                    tempList.add(childGroups.get(j));
+//                   flag=0;
+//                    break;
+//
+//                }
+//            if (flag==0) break;
+//         }
+
+
+
+        return tempList;
+    }
+
+
 }
